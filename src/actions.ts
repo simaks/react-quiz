@@ -16,6 +16,7 @@ export enum actionTypes {
     RESULT_SUBMIT_ERROR = "RESULT_SUBMIT_ERROR",
     RESULT_RESPONSE = "RESULT_RESPONSE",
 
+    APP_SHOW_INTRO = "APP_SHOW_INTRO",
     APP_SHOW_QUESTION = "APP_SHOW_QUESTION",
     APP_SHOW_RESULT = "APP_SHOW_RESULT",
 }
@@ -58,6 +59,12 @@ export const fetchQuestions = () => {
     }
 }
 
+export const showIntroPage = () => {
+    return {
+        type: actionTypes.APP_SHOW_INTRO,
+    }
+}
+
 export const showQuestionPage = () => {
     return {
         type: actionTypes.APP_SHOW_QUESTION,
@@ -96,7 +103,7 @@ export const submitAnswers = (answers: IAnswer[]) => {
         dispatch({
             type: actionTypes.RESULT_ANSWERS_SUBMIT
         })
-        axios.post(`${serverUrl}/questions/get`, { answers })
+        axios.post(`${serverUrl}/questions/check`, { answers })
             .then(response => dispatch(submitAnswersSuccess(response.data)))
             .catch(error => dispatch(submitAnswersError(error)));
     }

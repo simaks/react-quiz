@@ -28,7 +28,7 @@ export interface IAnswersReducer {
 
 export interface IResult {
     correct: number,
-    missing: number,
+    skipped: number,
     wrong: number,
 }
 

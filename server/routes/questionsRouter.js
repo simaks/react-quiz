@@ -1,13 +1,23 @@
 const express = require('express');
 const cachedQuestions = require('../data/questions.json');
 
-const itemRouter = express.Router();
+const questionsRouter = express.Router();
+
+questionsRouter.get('/get', (req, res) => {
+    const questions = getQuestions(cachedQuestions);
+    res.status(200).json(questions);
+});
+
+questionsRouter.post('/check', (req, res) => {
+    res.status(200).json(checkAnswers(cachedQuestions, req.body.answers));
+});
 
 /**
  * Return all questions excluding their correct answers.
+ * @param {{ id: string, question: string, choices: string[], correctAnswer: number }[]} questions 
  */
-const getQuestions = function (cachedQuestions) {
-    return cachedQuestions.map((question) => {
+const getQuestions = function (questions) {
+    return questions.map((question) => {
         return {
             id: question.id,
             question: question.question,
@@ -16,9 +26,24 @@ const getQuestions = function (cachedQuestions) {
     });
 };
 
-itemRouter.get('/get', (req, res) => {
-    const questions = getQuestions(cachedQuestions);
-    res.status(200).json(questions);
-});
+/**
+ * Calculate quiz results by given answers and questions with correct answers
+ * @param {{ id: string, question: string, choices: string[], correctAnswer: number }[]} questions 
+ * @param {{ questionId: string, answer: number }[]} answers
+ * @returns {{ correct: number, wrong: number, skipped: number }}
+ */
+const checkAnswers = function (questions, answers) {
+    let correct = 0;
+    let wrong = 0;
+    for (let answer of answers) {
+        const question = questions.find(q => q.id === answer.questionId);
+        question.correctAnswer === answer.answer ? correct++ : wrong++;
+    }
+    return {
+        correct,
+        wrong,
+        skipped: cachedQuestions.length - answers.length,
+    }
+};
 
-module.exports = itemRouter;
+module.exports = questionsRouter;

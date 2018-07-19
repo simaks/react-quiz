@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { isUndefined } from 'util';
 import { Button, ErrorMessage, ProgressBar } from '../';
 import { answerQuestion, fetchQuestions, questionsNext, questionsPrev, showResultPage } from '../../actions';
 import { IAnswer, IQuestion, IReducer } from '../../interfaces';
@@ -11,6 +12,7 @@ interface IQuestionPageProps {
   activeQuestion?: IQuestion | null,
   activeQuestionIndex?: number,
   answers?: IAnswer[],
+  allAnswered?: boolean,
   questionsFetching?: boolean,
   questionsFetchError?: Error | null,
   hasNext?: boolean,
@@ -38,8 +40,6 @@ class QuestionPage extends React.Component<IQuestionPageProps> {
   }
 
   public render() {
-    // tslint:disable-next-line:no-console
-    console.log(this.props.answers ? this.props.answers.length : this.props.answers, this.props.totalQuestions);
     return (
       <div className='QuestionPage'>
         <ProgressBar
@@ -48,6 +48,9 @@ class QuestionPage extends React.Component<IQuestionPageProps> {
 
         <div className='QuestionPage-question'>
           {this.props.questionsFetching ? 'Loading...' : <div>
+            <div className='QuestionPage-number'>
+              Question {!isUndefined(this.props.activeQuestionIndex) ? this.props.activeQuestionIndex + 1 : ''} out of {this.props.totalQuestions}
+            </div>
             <h2 className='QuestionPage-title'>{this.questionTitle}</h2>
             <div className='QuestionPage-choices'>{this.answerChoices}</div>
             {this.props.questionsFetchError ? <ErrorMessage error={this.props.questionsFetchError} /> : ''}
@@ -58,7 +61,7 @@ class QuestionPage extends React.Component<IQuestionPageProps> {
         <div className='QuestionPage-controls'>
           <Button onClick={this.onPrevClick} disabled={!this.props.hasPrevious}>Previous</Button>&nbsp;
           <Button onClick={this.onNextClick} disabled={!this.props.hasNext}>{this.props.activeAnswer ? 'Next' : 'Skip'}</Button>&nbsp;
-          <Button onClick={this.onSubmitClick} disabled={this.submitBtnDisabled}>Submit</Button>
+          <Button onClick={this.onSubmitClick} disabled={this.submitBtnDisabled} type={this.props.allAnswered ? ButtonTypes.SUCCESS : ButtonTypes.WARNING}>Submit</Button>
         </div>
       </div>
     );
@@ -139,6 +142,7 @@ const mapStateToProps = (state: IReducer): IQuestionPageProps => {
     })(),
     activeQuestion: state.questions.activeQuestion,
     activeQuestionIndex: state.questions.activeQuestionIndex,
+    allAnswered: state.answers.answers && state.answers.answers.length === state.questions.totalQuestions,
     answers: state.answers.answers,
     hasNext: state.questions.hasNext,
     hasPrevious: state.questions.hasPrevious,
