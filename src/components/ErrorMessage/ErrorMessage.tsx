@@ -5,7 +5,7 @@ interface IErrorMessageProps {
     error: Error,
 }
 
-class ErrorMessage extends React.PureComponent<IErrorMessageProps> {
+export class ErrorMessage extends React.PureComponent<IErrorMessageProps> {
     public render() {
         return (
             <div className='ErrorMessage'>

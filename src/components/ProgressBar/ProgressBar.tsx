@@ -6,7 +6,7 @@ interface IProgressBarProps {
     total: number,
 }
 
-class ProgressBar extends React.PureComponent<IProgressBarProps> {
+export class ProgressBar extends React.PureComponent<IProgressBarProps> {
     public render() {
         return (
             <div className='ProgressBar'>
