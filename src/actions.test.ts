@@ -95,18 +95,4 @@ describe('actions', () => {
             });
         })
     })
-
-    // describe('fetchQuestions', () => {
-    //     it('sends correct action', () => {
-    //         expect(actions.fetchQuestions()).toEqual({
-    //         });
-    //     })
-    // })
-
-    // describe('submitAnswers', () => {
-    //     it('sends correct action', () => {
-    //         expect(actions.submitAnswers()).toEqual({
-    //         });
-    //     })
-    // })
 })

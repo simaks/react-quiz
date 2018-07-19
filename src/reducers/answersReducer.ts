@@ -2,7 +2,6 @@ import { actionTypes } from '../actions';
 import { IAnswer, IAnswersReducer } from '../interfaces';
 
 const answersReducerInitialState: IAnswersReducer = {
-    activeAnswer: null,
     answers: [],
 }
 
@@ -11,7 +10,6 @@ const answersReducer = (state: IAnswersReducer = answersReducerInitialState, act
         case actionTypes.RESET:
             return {
                 ...state,
-                activeAnswer: null,
                 answers: [],
             };
         case actionTypes.ANSWER_QUESTION:

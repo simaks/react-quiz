@@ -8,8 +8,8 @@ export interface IQuestionsReducer {
     data: IQuestion[],
     activeQuestionIndex: number,
     activeQuestion: IQuestion | null,
-    hasNext: false,
-    hasPrevious: false,
+    hasNext: boolean,
+    hasPrevious: boolean,
     totalQuestions: number,
     error: Error | null,
     fetched: boolean,
@@ -23,7 +23,6 @@ export interface IAnswer {
 
 export interface IAnswersReducer {
     answers: IAnswer[],
-    activeAnswer: IAnswer | null,
 }
 
 export interface IResult {
