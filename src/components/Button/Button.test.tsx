@@ -32,6 +32,13 @@ describe('components', () => {
       expect(wrapper.find('.Button-lg').length).toBe(1);
     })
 
+    it('can be block', () => {
+      wrapper = shallow(<Button />);
+      expect(wrapper.find('.Button-block').length).toBe(0);
+      wrapper = shallow(<Button block={true} />);
+      expect(wrapper.find('.Button-block').length).toBe(1);
+    })
+
     it('has working onClick', () => {
       const mockCallBack = sinon.spy();
       wrapper = shallow(<Button onClick={mockCallBack} />);

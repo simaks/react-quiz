@@ -10,6 +10,7 @@ import './ResultPage.css';
 interface IResultPageProps {
   answers?: IAnswer[],
   error?: Error | null,
+  loading?: boolean,
   result?: IResult,
   resetQuiz?: () => void,
   submitAnswers?: (answers: IAnswer[]) => void,
@@ -32,17 +33,18 @@ class ResultPage extends React.PureComponent<IResultPageProps> {
     const result = this.props.result;
     return (
       <div className='ResultPage'>
+      {this.props.loading ? 'Loading...' : <div>
         {result ? <div>
           <h2>Your results</h2>
           <p>Correct: {result.correct}</p>
           <p>Wrong: {result.wrong}</p>
           <p>Skipped: {result.skipped}</p>
-        </div> : 'no result'}
-        {this.props.error ? <div>
+        </div> : this.props.error ? <div>
           <ErrorMessage error={this.props.error} />
           <Button onClick={this.onTrySubmitAgainClick}>Try submit again</Button>
-        </div> : ''}
+        </div> : 'no result'}
         <Button onClick={this.onHomeClick} size={ButtonSizes.LG}>Home</Button>
+      </div>}
       </div>
     );
   }
@@ -64,6 +66,7 @@ const mapStateToProps = (state: IReducer): IResultPageProps => {
   return {
     answers: state.answers.answers,
     error: state.result.error,
+    loading: state.result.fetching,
     result: state.result.result || undefined,
   }
 }

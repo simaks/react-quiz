@@ -80,6 +80,7 @@ class QuestionPage extends React.PureComponent<IQuestionPageProps> {
           <Button
             size={ButtonSizes.LG}
             type={answer && answer.answer === index ? ButtonTypes.WARNING : ButtonTypes.DEFAULT}
+            block={true}
             onClick={this.onAnswerClick(question.id, index)}>
             {choice}
           </Button>

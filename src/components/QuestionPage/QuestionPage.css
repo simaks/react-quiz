@@ -1,6 +1,6 @@
 .QuestionPage-question {
-    padding-bottom: 20px;
-    min-height: 20vh;
+    margin-bottom: 50px;
+    min-height: 30vh;
 }
 
 .QuestionPage-number {
@@ -17,8 +17,8 @@
 }
 
 .QuestionPage-choice {
-    display: inline-block;
-    padding: 10px;
+    display: block;
+    padding-bottom: 15px;
 }
 
 .QuestionPage-controls {

@@ -4,6 +4,7 @@
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 .Button:not([disabled]):hover {
@@ -22,6 +23,12 @@
 
 .Button-lg {
     padding: 10px 20px;
+    font-size: 18px;
+}
+
+.Button-block {
+    display: block;
+    width: 100%;
 }
 
 .Button-success {

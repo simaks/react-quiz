@@ -18,6 +18,7 @@ interface IButtonProps {
     disabled?: boolean,
     type?: ButtonTypes,
     size?: ButtonSizes,
+    block?: boolean,
 }
 
 export class Button extends React.PureComponent<IButtonProps> {
@@ -55,6 +56,9 @@ export class Button extends React.PureComponent<IButtonProps> {
             case ButtonTypes.DEFAULT:
             default:
                 className += ' Button-default';
+        }
+        if (this.props.block) {
+            className += ' Button-block';
         }
         return className;
     }
