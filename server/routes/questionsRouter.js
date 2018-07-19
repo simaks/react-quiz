@@ -11,7 +11,7 @@ const getQuestions = function (cachedQuestions) {
         return {
             id: question.id,
             question: question.question,
-            choises: question.choises
+            choices: question.choices
         }
     });
 };

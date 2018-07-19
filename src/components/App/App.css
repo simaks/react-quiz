@@ -1,0 +1,18 @@
+.App {
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.App-title {
+    text-align: center;
+    padding: 1vh 0 3vh;
+}
+
+.App-page {
+    width: 70vw;
+    max-width: 100%;
+}

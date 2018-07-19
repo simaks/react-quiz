@@ -1,0 +1,22 @@
+.Loader {
+    text-align: center;
+}
+
+.Loader-img {
+    height: 80px;
+    animation: Loader-spin infinite 1s linear;
+    animation-play-state: paused;
+}
+
+.Loader-loading .Loader-img {
+    animation-play-state: running;
+}
+
+@keyframes Loader-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

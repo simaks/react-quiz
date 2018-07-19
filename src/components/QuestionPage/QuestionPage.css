@@ -1,0 +1,21 @@
+.QuestionPage-question {
+    padding-bottom: 20px;
+    min-height: 20vh;
+}
+
+.QuestionPage-title {
+    text-align: center;
+}
+
+.QuestionPage-choices {
+    text-align: center;
+}
+
+.QuestionPage-choice {
+    display: inline-block;
+    padding: 10px;
+}
+
+.QuestionPage-controls {
+    text-align: center;
+}
