@@ -25,7 +25,7 @@ interface IQuestionPageProps {
   questionsNext?: () => any,
 }
 
-class QuestionPage extends React.Component<IQuestionPageProps> {
+class QuestionPage extends React.PureComponent<IQuestionPageProps> {
   constructor(props: IQuestionPageProps) {
     super(props);
     this.onNextClick = this.onNextClick.bind(this);
@@ -61,17 +61,10 @@ class QuestionPage extends React.Component<IQuestionPageProps> {
         <div className='QuestionPage-controls'>
           <Button onClick={this.onPrevClick} disabled={!this.props.hasPrevious}>Previous</Button>&nbsp;
           <Button onClick={this.onNextClick} disabled={!this.props.hasNext}>{this.props.activeAnswer ? 'Next' : 'Skip'}</Button>&nbsp;
-          <Button onClick={this.onSubmitClick} disabled={this.submitBtnDisabled} type={this.props.allAnswered ? ButtonTypes.SUCCESS : ButtonTypes.WARNING}>Submit</Button>
+          <Button onClick={this.onSubmitClick} type={this.props.allAnswered ? ButtonTypes.SUCCESS : ButtonTypes.WARNING}>Submit</Button>
         </div>
       </div>
     );
-  }
-
-  get submitBtnDisabled() {
-    if (this.props.answers && this.props.answers.length === this.props.totalQuestions) {
-      return false;
-    }
-    return this.props.hasNext;
   }
 
   private get questionTitle() {

@@ -20,7 +20,7 @@ interface IButtonProps {
     size?: ButtonSizes,
 }
 
-class Button extends React.Component<IButtonProps> {
+class Button extends React.PureComponent<IButtonProps> {
     public render() {
         return (
             <button

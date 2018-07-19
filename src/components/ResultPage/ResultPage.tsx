@@ -15,7 +15,7 @@ interface IResultPageProps {
   submitAnswers?: (answers: IAnswer[]) => void,
 }
 
-class ResultPage extends React.Component<IResultPageProps> {
+class ResultPage extends React.PureComponent<IResultPageProps> {
   constructor(props: IResultPageProps) {
     super(props);
     this.onTrySubmitAgainClick = this.onTrySubmitAgainClick.bind(this);

@@ -10,7 +10,7 @@ interface IIntroPageProps {
   showQuestionPage?: () => void,
 }
 
-class IntroPage extends React.Component<IIntroPageProps> {
+class IntroPage extends React.PureComponent<IIntroPageProps> {
   constructor(props: IIntroPageProps) {
     super(props);
 

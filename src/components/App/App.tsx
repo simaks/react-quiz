@@ -10,7 +10,7 @@ interface IAppProps {
   loading?: boolean,
 }
 
-class App extends React.Component<IAppProps> {
+export class App extends React.PureComponent<IAppProps> {
   get showIntroPage() {
     if (this.props) {
       return false;
