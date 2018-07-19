@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { Dispatch } from 'redux';
 import { serverUrl } from './constants';
-import { IAnswer, IQuestion } from './interfaces';
+import { IAnswer, IQuestion, IResult } from './interfaces';
 
 export enum actionTypes {
     QUESTIONS_FETCH = "QUESTIONS_FETCH",
@@ -50,15 +49,14 @@ export const questionsFetchError = (error: Error) => {
     }
 }
 
-export const fetchQuestions = () => {
-    return (dispatch: Dispatch) => {
-        dispatch({
-            type: actionTypes.QUESTIONS_FETCH
-        })
-        axios.get(`${serverUrl}/questions/get`)
-            .then(response => dispatch(questionsFetched(response.data)))
-            .catch(error => dispatch(questionsFetchError(error)));
-    }
+export const fetchQuestions = () => (dispatch: Dispatch) => {
+    dispatch({
+        type: actionTypes.QUESTIONS_FETCH
+    })
+    return fetch(`${serverUrl}/questions/get`)
+        .then((response) => response.json())
+        .then(response => dispatch(questionsFetched(response)))
+        .catch(error => dispatch(questionsFetchError(error)));
 }
 
 export const showIntroPage = () => {
@@ -86,7 +84,7 @@ export const answerQuestion = (questionId: string, answer: number) => {
     }
 }
 
-export const submitAnswersSuccess = (result: number) => {
+export const submitAnswersSuccess = (result: IResult) => {
     return {
         payload: result,
         type: actionTypes.RESULT_RESPONSE,
@@ -100,21 +98,23 @@ export const submitAnswersError = (error: Error) => {
     }
 }
 
-export const submitAnswers = (answers: IAnswer[]) => {
-    return (dispatch: Dispatch) => {
-        dispatch({
-            type: actionTypes.RESULT_ANSWERS_SUBMIT
-        })
-        axios.post(`${serverUrl}/questions/check`, { answers })
-            .then(response => dispatch(submitAnswersSuccess(response.data)))
-            .catch(error => dispatch(submitAnswersError(error)));
-    }
+export const submitAnswers = (answers: IAnswer[]) => (dispatch: Dispatch) => {
+    dispatch({
+        type: actionTypes.RESULT_ANSWERS_SUBMIT
+    });
+    return fetch(`${serverUrl}/questions/check`, {
+        body: JSON.stringify({ answers }),
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: "POST",
+        mode: "cors",
+    })
+        .then(response => response.json())
+        .then(response => dispatch(submitAnswersSuccess(response)))
+        .catch(error => dispatch(submitAnswersError(error)));
 }
 
 export const resetQuiz = () => {
-    return (dispatch: Dispatch) => {
-        dispatch({
-            type: actionTypes.RESET
-        })
+    return {
+        type: actionTypes.RESET
     }
 }

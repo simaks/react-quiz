@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { isUndefined } from 'util';
-import { Button, ErrorMessage, ProgressBar } from '../';
+import { Button, ErrorMessage, ProgressBar } from '..';
 import { answerQuestion, fetchQuestions, questionsNext, questionsPrev, showResultPage } from '../../actions';
 import { IAnswer, IQuestion, IReducer } from '../../interfaces';
 import { ButtonSizes, ButtonTypes } from '../Button/Button';

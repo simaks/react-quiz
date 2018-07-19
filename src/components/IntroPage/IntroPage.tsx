@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Button } from '../';
+import { Button } from '..';
 import { showQuestionPage } from '../../actions';
 import { IReducer } from '../../interfaces';
 import { ButtonSizes } from '../Button/Button';
