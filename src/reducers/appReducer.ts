@@ -13,6 +13,11 @@ const appReducerInitialState: IAppReducer = {
 
 const appReducer = (state: IAppReducer = appReducerInitialState, action: any) => {
     switch (action.type) {
+        case actionTypes.RESET:
+            return {
+                ...state,
+                activePage: activePage.INTRO,
+            }
         case actionTypes.APP_SHOW_INTRO:
             return {
                 ...state,

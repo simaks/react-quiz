@@ -19,6 +19,8 @@ export enum actionTypes {
     APP_SHOW_INTRO = "APP_SHOW_INTRO",
     APP_SHOW_QUESTION = "APP_SHOW_QUESTION",
     APP_SHOW_RESULT = "APP_SHOW_RESULT",
+
+    RESET = "RESET",
 }
 
 export const questionsFetched = (questions: IQuestion[]) => {
@@ -106,5 +108,13 @@ export const submitAnswers = (answers: IAnswer[]) => {
         axios.post(`${serverUrl}/questions/check`, { answers })
             .then(response => dispatch(submitAnswersSuccess(response.data)))
             .catch(error => dispatch(submitAnswersError(error)));
+    }
+}
+
+export const resetQuiz = () => {
+    return (dispatch: Dispatch) => {
+        dispatch({
+            type: actionTypes.RESET
+        })
     }
 }

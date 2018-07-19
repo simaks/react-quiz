@@ -10,6 +10,13 @@ const resultReducerInitialState: IResultReducer = {
 
 const resultReducer = (state: IResultReducer = resultReducerInitialState, action: any) => {
     switch (action.type) {
+        case actionTypes.RESET:
+            return {
+                ...state,
+                error: null,
+                fetched: false,
+                result: null,
+            }
         case actionTypes.RESULT_ANSWERS_SUBMIT:
             return {
                 ...state,

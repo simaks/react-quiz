@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { showIntroPage, submitAnswers } from '../../actions';
+import { resetQuiz, submitAnswers } from '../../actions';
 import { IAnswer, IReducer, IResult } from '../../interfaces';
 import Button from '../Button';
 import { ButtonSizes } from '../Button/Button';
@@ -11,7 +11,7 @@ interface IResultPageProps {
   answers?: IAnswer[],
   error?: Error | null,
   result?: IResult,
-  showIntroPage?: () => void,
+  resetQuiz?: () => void,
   submitAnswers?: (answers: IAnswer[]) => void,
 }
 
@@ -54,8 +54,8 @@ class ResultPage extends React.Component<IResultPageProps> {
   }
 
   private onHomeClick() {
-    if (this.props.showIntroPage) {
-      this.props.showIntroPage();
+    if (this.props.resetQuiz) {
+      this.props.resetQuiz();
     }
   }
 }
@@ -70,8 +70,8 @@ const mapStateToProps = (state: IReducer): IResultPageProps => {
 
 const mapDispatchToProps = (dispatch: any): IResultPageProps => {
   return {
-    showIntroPage: () => {
-      dispatch(showIntroPage())
+    resetQuiz: () => {
+      dispatch(resetQuiz())
     },
     submitAnswers: (answers: IAnswer[]) => {
       dispatch(submitAnswers(answers))

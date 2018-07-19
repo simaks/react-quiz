@@ -8,10 +8,11 @@ const answersReducerInitialState: IAnswersReducer = {
 
 const answersReducer = (state: IAnswersReducer = answersReducerInitialState, action: any) => {
     switch (action.type) {
-        case actionTypes.QUESTIONS_LOAD:
+        case actionTypes.RESET:
             return {
                 ...state,
-                answers: []
+                activeAnswer: null,
+                answers: [],
             };
         case actionTypes.ANSWER_QUESTION:
             const newAnswer: IAnswer = action.payload;
