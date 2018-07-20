@@ -35,7 +35,7 @@
             "V (View)",
             "C (Controller)"
         ],
-        "correctAnswer": 0
+        "correctAnswer": 1
     },
     {
         "id": "5",
@@ -44,7 +44,7 @@
             "props",
             "state"
         ],
-        "correctAnswer": 0
+        "correctAnswer": 1
     },
     {
         "id": "6",
@@ -54,7 +54,7 @@
             "render",
             "renderComponent"
         ],
-        "correctAnswer": 0
+        "correctAnswer": 1
     },
     {
         "id": "7",
@@ -63,7 +63,7 @@
             "True",
             "False"
         ],
-        "correctAnswer": 0
+        "correctAnswer": 1
     },
     {
         "id": "8",
@@ -72,7 +72,7 @@
             "state",
             "props"
         ],
-        "correctAnswer": 0
+        "correctAnswer": 1
     },
     {
         "id": "9",
@@ -90,6 +90,6 @@
             "True",
             "False"
         ],
-        "correctAnswer": 0
+        "correctAnswer": 1
     }
 ]
